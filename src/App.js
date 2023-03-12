@@ -1,6 +1,6 @@
 import * as html2pdf from 'html2pdf.js';
 import queryString from 'query-string';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Logo from './assets/logo';
 import { GlobalStyle } from './global-style';
@@ -61,20 +61,24 @@ const WebUrl = styled(Font11)`
 function App() {
   const cardRef = useRef();
   const params = queryString.parse(window.location.search);
-  console.log(params)
   var opt = {
     filename:     `${params.name} 명함.pdf`,
     html2canvas:  { scale: 30 },
     pagebreak: { mode: 'avoid-all', after: '.card' },
     jsPDF:        { unit: 'mm', format: [52, 92], orientation: 'landscape' }
   };
-  const aa = () => {
-    html2pdf().set(opt).from(cardRef.current).save();
-  }
+
+  useEffect(() => {
+    html2pdf().set(opt).from(cardRef.current).save().then(() => {
+      window.open('','_self').close();
+    });
+    //eslint-disable-next-line
+  }, [])
+
   return (
     <>
       <GlobalStyle/>
-      <Wrapper onClick={() => aa()} ref={cardRef}>
+      <Wrapper ref={cardRef}>
         <FrontCard className="card" >
           <TextBox>
             <div>
