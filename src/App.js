@@ -138,7 +138,7 @@ function App() {
               <div>
                 <PhoneNumber className='en'>{params.phone ? params.phone : 'PhoneNumber'}</PhoneNumber>
                 <Email className='en'>{params.email ? params.email : 'Email@moyoplan.com'}</Email>
-                {params.address === 'TRUE' && <Address className='ko'>서울 강남구 테헤란로20길 20, 8층</Address>}
+                {params.address === 'TRUE' && <Address className='ko'>서울시 서초구 강남대로 343, 신덕빌딩 11층</Address>}
                 <WebUrl className='en'>www.moyoplan.com</WebUrl>
               </div>
             </TextBox>
